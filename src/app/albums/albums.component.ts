@@ -1,0 +1,36 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { UserService } from '../services/user.service';
+
+@Component({
+  selector: 'app-albums',
+  templateUrl: './albums.component.html',
+  styleUrls: ['./albums.component.css']
+})
+export class AlbumsComponent implements OnInit, OnDestroy {
+  albums: string[] = [];
+  photos: string[] = [];
+  sub: Subscription;
+
+  constructor(private userService: UserService) { }
+
+  ngOnInit(): void {
+  this.sub = this.userService.albums
+    .subscribe((albums: any[]) => {
+      this.albums = albums;
+    })
+  }
+  
+  getPhotos(userId: number){
+    this.userService.getPhotos(userId)
+      .subscribe((photos:string[]) => {
+        this.photos = photos;
+        this.userService.photos.next(this.photos);
+        console.log(photos);
+      })
+  }
+  
+  ngOnDestroy(): void {
+      this.sub.unsubscribe;
+  }
+}
