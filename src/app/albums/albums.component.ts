@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Album } from '../models/albums.model';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -8,15 +9,14 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./albums.component.css']
 })
 export class AlbumsComponent implements OnInit, OnDestroy {
-  albums: string[] = [];
-  photos: string[] = [];
+  albums: Album[] = [];
   sub: Subscription;
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   this.sub = this.userService.albums
-    .subscribe((albums: any[]) => {
+    .subscribe((albums: Album[]) => {
       this.albums = albums;
     })
   }
