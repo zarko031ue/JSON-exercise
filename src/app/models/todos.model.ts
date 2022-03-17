@@ -1,9 +1,6 @@
-export interface Post {
-    body: string;
+export interface Todo {
+    completed: boolean;
     id: number;
     title: string;
     userId: number;
 }
-
-
-

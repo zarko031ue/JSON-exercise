@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Post } from 'src/app/models/post.model';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -11,7 +12,8 @@ import { PostsService } from 'src/app/services/posts.service';
 export class PostEditComponent implements OnInit {
   editMode = false;
   id: number;
-  post: any;
+  post: Post;
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -38,7 +40,7 @@ export class PostEditComponent implements OnInit {
     let body = '';
 
     if (this.editMode) {
-      this.postService.getPost(this.id).subscribe((post: any) => {
+      this.postService.getPost(this.id).subscribe((post: Post) => {
         this.post = post;
         title = this.post.title;
         body = this.post.body;
@@ -56,9 +58,9 @@ export class PostEditComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     if(this.editMode){
-      this.postService.updatePosts(this.form.controls['title'].value, this.form.controls['textarea'].value, this.id);
+      this.postService.updatePosts(form.value.title, form.value.textarea, this.id);
     } else {
-      this.postService.addPost(this.form.controls['title'].value, this.form.controls['textarea'].value);
+      this.postService.addPost(form.value.title, form.value.textarea);
     }
     this.onCancel();
  

@@ -5,7 +5,7 @@
                 <div class="card-body">
                   <h5>ALBUM NAME: </h5>
                   <h5 class="card-title">{{album.title}}</h5>
-                  <a [routerLink]="['/photos']" (click)="getPhotos(album.userId)" class="btn btn-primary">Show pictures</a>
+                  <a [routerLink]="['/albums', album.userId, 'photos']" class="btn btn-primary">Show pictures</a>
                 </div>
             </div>
         </div>

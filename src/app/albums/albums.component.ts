@@ -21,16 +21,7 @@ export class AlbumsComponent implements OnInit, OnDestroy {
     })
   }
   
-  getPhotos(userId: number){
-    this.userService.getPhotos(userId)
-      .subscribe((photos:string[]) => {
-        this.photos = photos;
-        this.userService.photos.next(this.photos);
-        console.log(photos);
-      })
-  }
-  
   ngOnDestroy(): void {
-      this.sub.unsubscribe;
+      this.sub.unsubscribe();
   }
 }

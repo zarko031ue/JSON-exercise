@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'users', pathMatch: 'full'},
   {path: 'users', component: UsersComponent},
   {path: 'albums', component: AlbumsComponent},
-  {path: 'photos', component: PhotosComponent},
+  {path: 'albums/:id/photos', component: PhotosComponent},
   {path: 'todo', component: TodoComponent},
   {path: 'posts', component: PostsComponent},
   {path: 'posts/new', component: PostEditComponent},

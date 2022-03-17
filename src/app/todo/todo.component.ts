@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Todo } from '../models/todos.model';
 import { TodoService } from '../services/todo.service';
 
 @Component({
@@ -8,14 +9,14 @@ import { TodoService } from '../services/todo.service';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent implements OnInit {
-  todos: any[] = [];
+  todos: Todo[] = [];
   sub: Subscription;
   status = 'Delete successful';
 
   constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {
-    this.sub = this.todoService.todo.subscribe((todos: string[]) => {
+    this.sub = this.todoService.todo.subscribe((todos: Todo[]) => {
       this.todos = todos;
     });
     console.log(this.status);
