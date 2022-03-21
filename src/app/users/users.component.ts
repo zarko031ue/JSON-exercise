@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Album } from '../models/albums.model';
 import { Post } from '../models/post.model';
 import { Todo } from '../models/todos.model';
@@ -45,7 +44,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  getTodos(userId: number) {
+  getTodos(userId: number)  {
     this.todoService.getTodo(userId).subscribe((todo: Todo[]) => {
       this.todo = todo;
       this.todoService.todo.next(this.todo);
@@ -56,7 +55,7 @@ export class UsersComponent implements OnInit {
   getPosts(userId: number) {
     this.postsService.getPosts(userId).subscribe((posts: Post[]) => {
       this.posts = posts;
-      this.postsService.posts.next(this.posts)
+      this.postsService.posts.next(this.posts);
       console.log(this.posts);
     })
   }
