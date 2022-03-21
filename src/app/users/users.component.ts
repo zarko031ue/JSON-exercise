@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Album } from '../models/albums.model';
 import { Post } from '../models/post.model';
 import { Todo } from '../models/todos.model';
@@ -26,6 +27,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
+    
   }
 
   getUsers() {
@@ -35,7 +37,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  getAlbums(userId: number) {
+  getAlbums(userId: number){
     this.userService.getAlbums(userId).subscribe((albums: Album[]) => {
       this.albums = albums;
       this.userService.albums.next(this.albums);
@@ -51,7 +53,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  getPosts(userId: number)  {
+  getPosts(userId: number) {
     this.postsService.getPosts(userId).subscribe((posts: Post[]) => {
       this.posts = posts;
       this.postsService.posts.next(this.posts)

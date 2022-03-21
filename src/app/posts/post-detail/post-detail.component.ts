@@ -12,8 +12,7 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class PostDetailComponent implements OnInit {
   id: number
-  posts: Post[] = [];
-  comments: Comments[] = [];
+  postWithComments: PostWithComments[] = [];
   i:number;
   constructor(private route: ActivatedRoute, private postService: PostsService) { }
 
@@ -24,22 +23,16 @@ export class PostDetailComponent implements OnInit {
        
       }
     )
-     this.getPostWithComments();
+     this.getPostWithCom();
   }
 
-  getPostWithComments() {
-    this.postService.getPost(this.id).subscribe(
-      (post: Post) => {
-        this.posts.push(post);
-        console.log(post);
+  getPostWithCom(){
+    this.postService.getPostWithComments(this.id)
+      .subscribe(
+      (postWithComments: PostWithComments) => {
+        this.postWithComments.push(postWithComments)
+        console.log(this.postWithComments)
       }
-    )
-    this.postService.getPostsComments(this.id).subscribe(
-      (comments: Comments[]) => {
-        this.comments = comments;
-        this.i = comments.length
-        console.log(this.comments);
-      }
-    )
+      )
   }
 }

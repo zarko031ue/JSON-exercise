@@ -1,13 +1,40 @@
-<div class="container mt-4" *ngFor="let post of posts">
+<div class="container mt-4" *ngFor="let post of postWithComments">
     <h5 class="comments-title">{{post.title}}</h5>
     <p class="comment-title" > {{post.body}}</p>
     <p>UserId: {{post.userId}}</p>
+
+    <div class="be-comment-block">
+        <h1 class="comments-title">Comments ({{i}})</h1>
+        <div class="be-comment" *ngFor="let comment of post.comments ; let i = index">
+            <div class="be-img-comment">	
+                <a href="blog-detail-2.html">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
+                </a>
+            </div>
+            <div class="be-comment-content">
+                    <span class="be-comment-name">
+                        <p>Name: {{comment.name}}</p>
+                        <p>Email: {{comment.email}} </p>
+                        </span>
+                    <span class="be-comment-time">
+                        <i class="fa fa-clock-o"></i>
+                        May 27, 2015 at 3:14am
+                    </span>
+                <p class="be-comment-text">
+                    {{comment.body}}
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 
+ <!-- <div class="container mt-4">
+    <h5 class="comments-title">{{postWithComments}}</h5>
+</div>
 <div class="container">
     <div class="be-comment-block">
         <h1 class="comments-title">Comments ({{i}})</h1>
-        <div class="be-comment" *ngFor="let comment of comments">
+        <div class="be-comment" *ngFor="let comment of postWithComments['comments']; let i = index">
             <div class="be-img-comment">	
                 <a href="blog-detail-2.html">
                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
@@ -28,4 +55,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>  -->

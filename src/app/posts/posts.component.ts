@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { Post } from '../models/post.model';
 import { PostsService } from '../services/posts.service';
 
@@ -10,6 +10,7 @@ import { PostsService } from '../services/posts.service';
 })
 export class PostsComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
+  public postsChanged = new Subject<Post[]>();
   private sub: Subscription;
 
   constructor(private postsService: PostsService) {}
@@ -18,6 +19,13 @@ export class PostsComponent implements OnInit, OnDestroy {
     this.sub = this.postsService.posts.subscribe((posts: Post[]) => {
       this.posts = posts;
     });    
+    this.postsChanged.next(this.posts.slice());
+    this.postsChanged.subscribe(
+      (post: Post[]) => {
+        this.posts = post;
+      }
+    )
+    
   }
 
   ngOnDestroy(): void {
