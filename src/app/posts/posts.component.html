@@ -1,0 +1,12 @@
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline">
+      <button [routerLink]="['/posts', 'new']" class="btn btn-outline-danger" type="button">New Post</button>
+    </form>
+</nav>
+<div class="container mt-4" *ngFor="let post of posts">
+    <h5>{{post.title}}</h5>
+    <p  >{{post.body}}</p><br>
+    <button [routerLink]="['/posts', post.id]" type="button" class="btn btn-outline-success mr-1">Post Details</button>
+    <button [routerLink]="['/posts', post.id, 'edit']" class="btn btn-outline-primary">Edit post</button>
+
+</div>

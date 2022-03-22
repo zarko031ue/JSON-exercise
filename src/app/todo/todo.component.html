@@ -1,0 +1,22 @@
+  <div class="container">
+      <div class="table table-sm" *ngFor="let todo of todos; let i= index">
+            <thead>
+                <th scope="col">#</th>
+                <th scope="col">UserId</th>
+                <th scope="col">Title</th>
+                <th scope="col"></th>
+            </thead>
+            <tbody>
+                <th scope="row">
+                    <input 
+                    type="checkbox"
+                    [value]="todo.id"
+                    [checked]="todo.completed"
+                    (change)="onChangeTodos($event)">
+                </th>
+                <th>{{todo.userId}}</th>
+                <th>{{todo.title}}</th>
+                <th class="x" (click)="deleteTodo(todo.id)">x</th>
+            </tbody> 
+      </div>
+  </div>

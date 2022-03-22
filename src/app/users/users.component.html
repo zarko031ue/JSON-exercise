@@ -1,0 +1,19 @@
+
+<div class="row">
+    <div class="col-lg-12"  *ngFor="let user of users">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{user.name}}</h5>
+              <p class="card-text">Id: {{user.id}}</p>
+              <p class="card-text">User name: {{user.username}}</p>
+              <p class="card-text">Email: {{user.email}}</p>
+              <p class="card-text">Phone number: {{user.phone}}</p>
+              <a [routerLink]="['/albums']" (click)="getAlbums(user.id)" class="btn btn-outline-success">Albums</a>
+              <a [routerLink]="['/todo']"   (click)="getTodos(user.id)"  class="btn btn-outline-primary">Todos</a>
+              <a [routerLink]="['/posts']"  (click)="getPosts(user.id)"  class="btn btn-outline-secondary">Posts</a>
+            </div>
+          </div>
+    </div>
+</div>
+ 
+  
